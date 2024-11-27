@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Star Wars Unlimited Pack Generator</title>
+    <style>
+        /* Dark Theme Styles */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .pile-group {
+            margin-bottom: 20px;
+        }
+        .pile-group h3 {
+            margin-bottom: 5px;
+            color: #ffcc00;
+        }
+        .pile-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .pile-group input[type="number"] {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border: 1px solid #333333;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        #result {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            background-color: #1e1e1e;
+            padding: 15px;
+            border: 1px solid #333333;
+            border-radius: 5px;
+        }
+        button {
+            margin-right: 10px;
+            background-color: #333333;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #444444;
+        }
+        #instructions {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border: 1px solid #333333;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        #instructions ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        #instructions ul ul {
+            list-style-type: circle;
+        }
+        #instructions li {
+            margin-bottom: 5px;
+        }
+        #instructions strong {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <h1>Star Wars Unlimited Pack Generator</h1>
+
+    <!-- Instructions -->
+    <div id="instructions">
+        <p>
+            Before using this app, please organize your physical cards as follows:
+        </p>
+        <ul>
+            <li><strong>Leaders:</strong> Place all your leader cards in one pile.</li>
+            <li><strong>Bases:</strong> Place all your base cards in another pile.</li>
+            <li><strong>Commons:</strong> Sort your common cards into five piles based on their aspect:
+                <ul>
+                    <li>Red</li>
+                    <li>Blue</li>
+                    <li>Green</li>
+                    <li>Yellow</li>
+                    <li>Colorless</li>
+                </ul>
+            </li>
+            <li><strong>Uncommons:</strong> Sort your uncommon cards into five piles based on their aspect:
+                <ul>
+                    <li>Red</li>
+                    <li>Blue</li>
+                    <li>Green</li>
+                    <li>Yellow</li>
+                    <li>Colorless</li>
+                </ul>
+            </li>
+            <li><strong>Rares/Legendaries:</strong> Combine all your rare and legendary cards, then sort them into five piles based on their aspect:
+                <ul>
+                    <li>Red</li>
+                    <li>Blue</li>
+                    <li>Green</li>
+                    <li>Yellow</li>
+                    <li>Colorless</li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            After sorting your cards, count the number of cards in each pile and enter those numbers into the corresponding input fields below. Then, specify the number of packs you want to generate (up to the maximum allowed based on your card counts). Click the <strong>"Generate Packs"</strong> button to create your packs. For each card in the generated pack, select the pile of the given rarity and aspect, then select the card from that pile based on the number given by counting that many cards into the pile.
+        </p>
+    </div>
+
+    <!-- Leaders and Bases -->
+    <div class="pile-group">
+        <h3>Leaders and Bases</h3>
+        <label>
+            Number of Leaders:
+            <input type="number" id="leaders" min="0" value="0">
+        </label>
+        <label>
+            Number of Bases:
+            <input type="number" id="bases" min="0" value="0">
+        </label>
+    </div>
+
+    <!-- Commons -->
+    <div class="pile-group">
+        <h3>Commons</h3>
+        <label>Red Commons: <input type="number" id="common-red" min="0" value="0"></label>
+        <label>Blue Commons: <input type="number" id="common-blue" min="0" value="0"></label>
+        <label>Green Commons: <input type="number" id="common-green" min="0" value="0"></label>
+        <label>Yellow Commons: <input type="number" id="common-yellow" min="0" value="0"></label>
+        <label>Colorless Commons: <input type="number" id="common-colorless" min="0" value="0"></label>
+    </div>
+
+    <!-- Uncommons -->
+    <div class="pile-group">
+        <h3>Uncommons</h3>
+        <label>Red Uncommons: <input type="number" id="uncommon-red" min="0" value="0"></label>
+        <label>Blue Uncommons: <input type="number" id="uncommon-blue" min="0" value="0"></label>
+        <label>Green Uncommons: <input type="number" id="uncommon-green" min="0" value="0"></label>
+        <label>Yellow Uncommons: <input type="number" id="uncommon-yellow" min="0" value="0"></label>
+        <label>Colorless Uncommons: <input type="number" id="uncommon-colorless" min="0" value="0"></label>
+    </div>
+
+    <!-- Rares/Legendaries -->
+    <div class="pile-group">
+        <h3>Rares/Legendaries</h3>
+        <label>Red Rares/Legendaries: <input type="number" id="rare-red" min="0" value="0"></label>
+        <label>Blue Rares/Legendaries: <input type="number" id="rare-blue" min="0" value="0"></label>
+        <label>Green Rares/Legendaries: <input type="number" id="rare-green" min="0" value="0"></label>
+        <label>Yellow Rares/Legendaries: <input type="number" id="rare-yellow" min="0" value="0"></label>
+        <label>Colorless Rares/Legendaries: <input type="number" id="rare-colorless" min="0" value="0"></label>
+    </div>
+
+    <!-- Number of Packs -->
+    <div class="pile-group">
+        <h3>Packs to Generate</h3>
+        <label>
+            Number of Packs:
+            <input type="number" id="packs" min="1" value="1">
+        </label>
+    </div>
+
+    <!-- Buttons -->
+    <button onclick="generatePacks()">Generate Packs</button>
+    <button onclick="resetForm()">Reset</button>
+
+    <!-- Result Display -->
+    <div id="result"></div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
